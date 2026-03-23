@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OutfitKart - Google Play Store</title>
+    <title>OutfitKart - Google Play</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,6 +11,7 @@
             --text-main: #202124;
             --text-sec: #5f6368;
             --bg-white: #ffffff;
+            --border-color: #dadce0;
         }
 
         body {
@@ -18,188 +19,195 @@
             margin: 0;
             background-color: var(--bg-white);
             color: var(--text-main);
-            user-select: none;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Top Header */
+        /* Header */
         header {
             padding: 12px 16px;
             display: flex;
             align-items: center;
-            border-bottom: 1px solid #dadce0;
+            border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             background: white;
             z-index: 100;
         }
 
-        .back-icon { margin-right: 24px; cursor: pointer; font-size: 20px; }
+        .back-icon { margin-right: 24px; font-size: 22px; cursor: pointer; color: var(--text-sec); }
 
-        /* App Info Section */
-        .app-main {
+        /* App Main Section */
+        .app-container { padding: 20px; }
+        
+        .app-header-flex {
             display: flex;
-            padding: 24px 20px 10px 20px;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
         .app-logo {
             width: 72px;
             height: 72px;
             border-radius: 16px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
             margin-right: 20px;
-            background: #000; /* OutfitKart typical theme */
+            object-fit: cover;
         }
 
         .app-info h1 {
             margin: 0;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 500;
-            letter-spacing: -0.5px;
+            line-height: 1.2;
         }
 
         .dev-link {
             color: var(--play-green);
             font-size: 14px;
             font-weight: 500;
-            margin-top: 4px;
             text-decoration: none;
             display: block;
+            margin-top: 4px;
         }
 
-        /* Stats Bar */
-        .stats-bar {
+        /* Stats Row */
+        .stats-row {
             display: flex;
+            justify-content: space-between;
             padding: 15px 0;
-            text-align: center;
             border-bottom: 1px solid #f1f3f4;
+            margin-bottom: 15px;
         }
 
-        .stat-item { flex: 1; border-right: 1px solid #e8eaed; }
+        .stat-item { flex: 1; text-align: center; border-right: 1px solid #e8eaed; }
         .stat-item:last-child { border-right: none; }
         .stat-val { font-weight: 700; font-size: 14px; }
         .stat-label { font-size: 11px; color: var(--text-sec); margin-top: 2px; }
 
         /* Install Button */
-        .btn-container { padding: 20px; }
         .install-btn {
             width: 100%;
             background-color: var(--play-green);
             color: white;
             border: none;
-            padding: 10px;
+            padding: 12px;
             border-radius: 8px;
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
+            margin-bottom: 15px;
         }
 
-        /* Screenshots - Horizontal Scroll */
+        /* Play Protect Badge */
+        .play-protect {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-sec);
+            margin-bottom: 20px;
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 6px;
+        }
+        .shield-icon { color: var(--play-green); margin-right: 8px; font-weight: bold; }
+
+        /* Screenshots Slider */
         .screenshots {
             display: flex;
             overflow-x: auto;
-            padding: 10px 20px;
             gap: 12px;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
             scrollbar-width: none;
         }
-        .screenshots img {
-            width: 150px;
-            height: 270px;
+        .screenshots::-webkit-scrollbar { display: none; }
+        .screenshot-img {
+            min-width: 160px;
+            height: 280px;
             background: #eee;
-            border-radius: 8px;
+            border-radius: 12px;
             object-fit: cover;
-            border: 1px solid #e8eaed;
+            border: 1px solid var(--border-color);
         }
 
-        /* Description */
-        .about { padding: 20px; }
-        .about h2 { font-size: 16px; font-weight: 500; display: flex; justify-content: space-between; }
-        .about p { font-size: 14px; color: var(--text-sec); line-height: 1.5; }
+        /* About Section */
+        .about-section h2 { font-size: 18px; font-weight: 500; margin-bottom: 10px; }
+        .about-text { font-size: 14px; color: var(--text-sec); line-height: 1.5; margin-bottom: 40px;}
 
-        /* Referral Badge */
-        .ref-tag {
-            background: #e8f0fe;
-            color: #1967d2;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
     </style>
 </head>
 <body>
 
     <header>
-        <span class="back-icon" onclick="history.back()">←</span>
-        <img src="https://www.gstatic.com/images/branding/product/2x/googleg_color_92dp.png" width="24" style="margin-right:10px">
-        <span style="font-weight: 500; color: #5f6368;">Google Play</span>
+        <div class="back-icon" onclick="window.location.href='https://google.com'">←</div>
+        <img src="https://www.gstatic.com/images/branding/product/2x/googleg_color_92dp.png" width="22" style="margin-right:12px">
+        <span style="font-weight: 500; color: #5f6368; font-size: 18px;">Google Play</span>
     </header>
 
-    <div class="app-main">
-        <div class="app-logo"></div> 
-        <div class="app-info">
-            <h1>OutfitKart</h1>
-            <a href="#" class="dev-link">Premium Fashion • SHAI416</a>
+    <div class="app-container">
+        <div class="app-header-flex">
+            <img src="https://i.ibb.co/5gXg0WTr/1774263119958.png" class="app-logo" alt="OutfitKart Logo">
+            <div class="app-info">
+                <h1>OutfitKart</h1>
+                <span class="dev-link">Shailesh • Premium Fashion</span>
+                <div style="font-size: 12px; color: var(--text-sec); margin-top: 4px;">Contains ads • In-app purchases</div>
+            </div>
         </div>
-    </div>
 
-    <div class="stats-bar">
-        <div class="stat-item">
-            <div class="stat-val">4.6 ★</div>
-            <div class="stat-label">Rating</div>
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-val">4.8 ★</div>
+                <div class="stat-label">12K reviews</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-val">2.8 MB</div>
+                <div class="stat-label">Fast Install</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-val">50K+</div>
+                <div class="stat-label">Downloads</div>
+            </div>
         </div>
-        <div class="stat-item">
-            <div class="stat-val">3.2 MB</div>
-            <div class="stat-label">Size</div>
+
+        <button class="install-btn" id="installTrigger">Install</button>
+
+        <div class="play-protect">
+            <span class="shield-icon">✓</span>
+            <span>Verified by Play Protect</span>
         </div>
-        <div class="stat-item">
-            <div class="stat-val">50K+</div>
-            <div class="stat-label">Downloads</div>
+
+        <div class="screenshots">
+            <img src="https://via.placeholder.com/160x280?text=New+Arrivals" class="screenshot-img">
+            <img src="https://via.placeholder.com/160x280?text=Best+Offers" class="screenshot-img">
+            <img src="https://via.placeholder.com/160x280?text=Your+Cart" class="screenshot-img">
+            <img src="https://via.placeholder.com/160x280?text=Payment" class="screenshot-img">
         </div>
-    </div>
 
-    <div class="btn-container">
-        <div class="ref-tag">Referral applied: SHAI416</div>
-        <button class="install-btn" id="mainAction">Install</button>
-    </div>
-
-    <div class="screenshots">
-        <img src="https://via.placeholder.com/150x270?text=Fashion+1" alt="screen">
-        <img src="https://via.placeholder.com/150x270?text=Collections" alt="screen">
-        <img src="https://via.placeholder.com/150x270?text=Checkout" alt="screen">
-    </div>
-
-    <div class="about">
-        <h2>About this app <span>→</span></h2>
-        <p>OutfitKart is your ultimate destination for premium fashion. Discover the latest trends, curated collections, and exclusive deals right on your home screen.</p>
-        <div style="color: var(--play-green); font-weight: 500; font-size: 14px;">Updated on Mar 24, 2026</div>
+        <div class="about-section">
+            <h2>About this app</h2>
+            <p class="about-text">
+                OutfitKart brings you the finest selection of premium clothing. 
+                Experience seamless shopping, secure payments, and the latest 
+                fashion trends at your fingertips. Developed by Shailesh (BCA).
+            </p>
+        </div>
     </div>
 
     <script>
-        const targetUrl = "https://outfitkartpremiumfashion.github.io/OUTFITKART/index.html?ref=SHAI416";
-        const btn = document.getElementById('mainAction');
+        const targetAppUrl = "https://outfitkartpremiumfashion.github.io/OUTFITKART/index.html?ref=SHAI416";
+        const btn = document.getElementById('installTrigger');
 
-        // PWA Install Logic
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-        });
-
-        btn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') {
-                    btn.innerText = "Installing...";
-                }
-                deferredPrompt = null;
-            } else {
-                // Agar PWA setup nahi hai ya PC par hai, toh direct site par bhej dega
-                window.location.href = targetUrl;
-            }
+        btn.addEventListener('click', () => {
+            // Animating like a real install
+            btn.innerText = "Waiting...";
+            btn.style.backgroundColor = "#e8eaed";
+            btn.style.color = "#5f6368";
+            
+            setTimeout(() => {
+                window.location.href = targetAppUrl;
+            }, 1000);
         });
     </script>
+
 </body>
 </html>
-
