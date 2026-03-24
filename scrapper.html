@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Scraper Tool</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    input {
+      width: 70%;
+      padding: 10px;
+    }
+    button {
+      padding: 10px;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+    img {
+      max-width: 200px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>🛒 Product Scraper</h2>
+
+<input type="text" id="url" placeholder="Paste Product URL here">
+<button onclick="scrape()">Scrape</button>
+
+<div id="output"></div>
+
+<script>
+async function scrape() {
+  const url = document.getElementById("url").value;
+
+  // ⚠️ Replace with your API key (PRIVATE rakho)
+  const apiKey = "YOUR_API_KEY";
+
+  const api = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+
+  try {
+    const res = await fetch(api);
+    const html = await res.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    // Basic extraction (generic)
+    const title = doc.querySelector("title")?.innerText || "Not found";
+
+    // Try multiple selectors for price
+    const price =
+      doc.querySelector(".price")?.innerText ||
+      doc.querySelector("[class*=price]")?.innerText ||
+      "Not found";
+
+    // Image
+    const image =
+      doc.querySelector("img")?.src || "";
+
+    document.getElementById("output").innerHTML = `
+      <div class="card">
+        <h3>${title}</h3>
+        <p><b>Price:</b> ${price}</p>
+        <img src="${image}" />
+      </div>
+    `;
+
+  } catch (err) {
+    document.getElementById("output").innerText = "Error loading product!";
+    console.error(err);
+  }
+}
+</script>
+
+</body>
+</html>
